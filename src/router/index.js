@@ -285,6 +285,39 @@ export const asyncRoutes = [
       },
     ]
   },
+  {
+    path: '/stuNotice',
+    component: Layout,
+    redirect: '/stuNotice',
+    children: [{
+      path: 'stuNotice',
+      name: 'stuNotice',
+      component: () => import('@/views/stuNotice/index'),
+      meta: { title: '学生通知', icon: 'dashboard' }
+    }]
+  },
+  {
+    path: '/teaNotice',
+    component: Layout,
+    redirect: '/teaNotice',
+    children: [{
+      path: 'teaNotice',
+      name: 'teaNotice',
+      component: () => import('@/views/teaNotice/index'),
+      meta: { title: '发布通知', icon: 'dashboard' }
+    }]
+  },
+  {
+    path: '/stuDiscuss',
+    component: Layout,
+    redirect: '/stuDiscuss',
+    children: [{
+      path: 'stuDiscuss',
+      name: 'stuDiscuss',
+      component: () => import('@/views/stuDiscuss/index'),
+      meta: { title: '互动交流', icon: 'dashboard' }
+    }]
+  },
 
 
   // 404 page must be placed at the end !!!
