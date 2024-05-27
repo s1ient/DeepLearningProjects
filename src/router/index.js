@@ -54,18 +54,6 @@ export const constantRoutes = [
       meta: { title: '首页', icon: 'dashboard' }
     }]
   },
-  {
-    path: '/form',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: '表格', icon: 'form' }
-      }
-    ]
-  }
 ]
 
 /**
@@ -74,64 +62,20 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: '嵌套',
-      icon: 'nested'
-    },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        meta: { title: 'menu2' }
-      }
-    ]
-  },
-  {
     path: '/course',
     component: Layout,
     redirect: '/course',
     name: 'course',
     meta: {
-      roles: ['admin'],
       title: '课程管理',
       icon: 'course'
     },
     children: [
       {
-        path: 'courseList',
-        component: () => import('@/views/course/courseList'),
-        name: 'courseList',
-        meta: { title: '课程目录', icon: 'system' }
+        path: 'courseAdd',
+        component: () => import('@/views/course/courseAdd'),
+        name: 'courseAdd',
+        meta: { title: '添加课程', icon: 'system' }
       },
       {
         path: 'courseDetail',
@@ -143,7 +87,7 @@ export const asyncRoutes = [
         path: 'courseSchedule',
         component: () => import('@/views/course/courseSchedule'),
         name: 'courseSchedule',
-        meta: { title: '课程进度', icon: 'system' }
+        meta: { title: '课程管理', icon: 'system' }
       }
     ]
   },
@@ -200,6 +144,144 @@ export const asyncRoutes = [
         component: () => import('@/views/studentCenter/studentCourse'),
         name: 'studentCourse',
         meta: { title: '我的课程', icon: 'nested' }
+      },
+    ]
+  },
+  {
+    path: '/analysis',
+    component: Layout,
+    redirect: '/analysis',
+    name: 'analysis',
+    meta: {
+      title: '数据分析',
+      icon: 'nested'
+    },
+    children: [
+      {
+        path: 'courseEngagement',
+        component: () => import('@/views/analysis/courseEngagement'),
+        name: 'courseEngagement',
+        meta: { title: '课程参与度', icon: 'nested' }
+      },
+      {
+        path: 'stuPerformance',
+        component: () => import('@/views/analysis/stuPerformance'),
+        name: 'stuPerformance',
+        meta: { title: '学生情况分析', icon: 'nested' }
+      },
+    ]
+  },
+  {
+    path: '/homework',
+    component: Layout,
+    redirect: '/homework',
+    name: 'homework',
+    meta: {
+      title: '作业与考试',
+      icon: 'nested'
+    },
+    children: [
+      {
+        path: 'assignments',
+        component: () => import('@/views/homework/assignments'),
+        name: 'assignments',
+        meta: { title: '作业', icon: 'nested' }
+      },
+      {
+        path: 'exams',
+        component: () => import('@/views/homework/exams'),
+        name: 'exams',
+        meta: { title: '考试', icon: 'nested' }
+      },
+      {
+        path: 'publishResults',
+        component: () => import('@/views/homework/publishResults'),
+        name: 'publishResults',
+        meta: { title: '成绩发布', icon: 'nested' }
+      },
+    ]
+  },
+  {
+    path: '/stuHomework',
+    component: Layout,
+    redirect: '/stuHomework',
+    name: 'stuHomework',
+    meta: {
+      title: '作业与考试',
+      icon: 'nested'
+    },
+    children: [
+      {
+        path: 'stuAssignments',
+        component: () => import('@/views/stuHomework/stuAssignments'),
+        name: 'stuAssignments',
+        meta: { title: '作业', icon: 'nested' }
+      },
+      {
+        path: 'stuExams',
+        component: () => import('@/views/stuHomework/stuExams'),
+        name: 'stuExams',
+        meta: { title: '考试', icon: 'nested' }
+      },
+      {
+        path: 'viewGrades',
+        component: () => import('@/views/stuHomework/viewGrades'),
+        name: 'viewGrades',
+        meta: { title: '查看成绩', icon: 'nested' }
+      },
+    ]
+  },
+  {
+    path: '/stuManage',
+    component: Layout,
+    redirect: '/stuManage',
+    name: 'stuManage',
+    meta: {
+      title: '学生管理',
+      icon: 'nested'
+    },
+    children: [
+      {
+        path: 'stuInteraction',
+        component: () => import('@/views/stuManage/stuInteraction'),
+        name: 'stuInteraction',
+        meta: { title: '学生互动', icon: 'nested' }
+      },
+      {
+        path: 'stuList',
+        component: () => import('@/views/stuManage/stuList'),
+        name: 'stuList',
+        meta: { title: '学生列表', icon: 'nested' }
+      },
+      {
+        path: 'stuProgress',
+        component: () => import('@/views/stuManage/stuProgress'),
+        name: 'stuProgress',
+        meta: { title: '学生进度', icon: 'nested' }
+      },
+    ]
+  },
+  {
+    path: '/stuCourse',
+    component: Layout,
+    redirect: '/stuCourse',
+    name: 'stuCourse',
+    meta: {
+      title: '课程学习',
+      icon: 'nested'
+    },
+    children: [
+      {
+        path: 'myCourse',
+        component: () => import('@/views/stuCourse/myCourse'),
+        name: 'myCourse',
+        meta: { title: '我的课程', icon: 'nested' }
+      },
+      {
+        path: 'courseDetails',
+        component: () => import('@/views/stuCourse/courseDetails'),
+        name: 'courseDetails',
+        meta: { title: '课程内容', icon: 'nested' }
       },
     ]
   },
