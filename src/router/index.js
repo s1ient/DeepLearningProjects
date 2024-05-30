@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '@/store'; // import Vuex store
 
 Vue.use(Router)
 
@@ -67,6 +68,7 @@ export const asyncRoutes = [
     redirect: '/course',
     name: 'course',
     meta: {
+      roles: ['teacher'],
       title: '课程管理',
       icon: 'course'
     },
@@ -83,13 +85,15 @@ export const asyncRoutes = [
         name: 'courseDetail',
         meta: { title: '课程详情', icon: 'system' }
       },
-      {
-        path: 'courseSchedule',
-        component: () => import('@/views/course/courseSchedule'),
-        name: 'courseSchedule',
-        meta: { title: '课程管理', icon: 'system' }
-      }
     ]
+  },
+  {
+    path: '/courseSchedule/:id',
+    component: () => import('@/views/course/courseSchedule'),
+    name: 'courseSchedule',
+    props: true,
+    meta: { title: '课程安排', icon: 'system' },
+    hidden: true
   },
   {
     path: '/System',
@@ -128,7 +132,7 @@ export const asyncRoutes = [
     redirect: '/studentCenter',
     name: 'studentCenter',
     meta: {
-      roles: ['admin'],
+      roles: ['student'],
       title: '个人中心',
       icon: 'nested'
     },
@@ -153,6 +157,7 @@ export const asyncRoutes = [
     redirect: '/analysis',
     name: 'analysis',
     meta: {
+      roles: ['teacher'],
       title: '数据分析',
       icon: 'nested'
     },
@@ -177,9 +182,11 @@ export const asyncRoutes = [
     redirect: '/homework',
     name: 'homework',
     meta: {
+      roles: ['teacher'],
       title: '作业与考试',
       icon: 'nested'
     },
+    hidden: true,
     children: [
       {
         path: 'assignments',
@@ -207,6 +214,7 @@ export const asyncRoutes = [
     redirect: '/stuHomework',
     name: 'stuHomework',
     meta: {
+      roles: ['student'],
       title: '作业与考试',
       icon: 'nested'
     },
@@ -237,6 +245,7 @@ export const asyncRoutes = [
     redirect: '/stuManage',
     name: 'stuManage',
     meta: {
+      roles: ['teacher'],
       title: '学生管理',
       icon: 'nested'
     },
@@ -267,6 +276,7 @@ export const asyncRoutes = [
     redirect: '/stuCourse',
     name: 'stuCourse',
     meta: {
+      roles: ['student'],
       title: '课程学习',
       icon: 'nested'
     },
@@ -293,7 +303,7 @@ export const asyncRoutes = [
       path: 'stuNotice',
       name: 'stuNotice',
       component: () => import('@/views/stuNotice/index'),
-      meta: { title: '学生通知', icon: 'dashboard' }
+      meta: { roles: ['student'], title: '学生通知', icon: 'dashboard' }
     }]
   },
   {
@@ -304,7 +314,7 @@ export const asyncRoutes = [
       path: 'teaNotice',
       name: 'teaNotice',
       component: () => import('@/views/teaNotice/index'),
-      meta: { title: '发布通知', icon: 'dashboard' }
+      meta: { roles: ['teacher'], title: '发布通知', icon: 'dashboard' }
     }]
   },
   {
@@ -315,7 +325,7 @@ export const asyncRoutes = [
       path: 'stuDiscuss',
       name: 'stuDiscuss',
       component: () => import('@/views/stuDiscuss/index'),
-      meta: { title: '互动交流', icon: 'dashboard' }
+      meta: { roles: ['student'], title: '互动交流', icon: 'dashboard' }
     }]
   },
 

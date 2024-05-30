@@ -22,7 +22,7 @@
 
 **1. 课程管理  course**
    - `courseDetail`：显示老师所创建的所有课程。
-   - `courseAdd`：创建新的课程,。
+   - `courseAdd`：创建新的课程。
    - `courseSchedule`：组织和管理课程结构（章节、模块等）。
 
 **2. 作业和考试  homework**
